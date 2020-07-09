@@ -1,0 +1,45 @@
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #eeeeee;
+  .illustrationWrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #34a0ef;
+    clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+    width: 60vw;
+    z-index: 1;
+    .calendar {
+      height: 55vh;
+      margin-top: 10rem;
+      animation: float 6s ease-in-out infinite;
+      margin: 0;
+    }
+
+    .person {
+      position: relative;
+      top: 20vh;
+      right: 8vw;
+    }
+  }
+
+  .registrationWrapper {
+    width: 40vw;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-20px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}

@@ -1,11 +1,12 @@
 .wrapper {
+  position: absolute;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100vw;
   background-color: #222831;
-  height: 5rem !important;
-
+  height: 8vh;
+  z-index: 3;
   .wrapper__logo {
     display: flex;
     justify-content: center;

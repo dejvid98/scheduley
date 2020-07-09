@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+  margin-top: 10rem;
+  z-index: 3;
+  img {
+    height: 13vh;
+  }
+
+  .formContainer {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 0rem 4rem 2rem 4rem;
+    border-radius: 25px;
+    .input {
+      margin: 1rem;
+      background-color: #fff;
+    }
+
+    p {
+      font-size: 2rem;
+      color: #2bced6;
+      letter-spacing: 1.5px;
+      font-weight: 500;
+    }
+
+    .checkBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 1rem;
+      p {
+        font-size: 1rem;
+        color: #393e46;
+      }
+      a {
+        color: #34a0ef;
+        text-decoration: none;
+        &:visited {
+          color: #34a0ef;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .submitButton {
+      background-color: #00adb5;
+      width: 7rem;
+      border-radius: 25px;
+    }
+  }
+}
