@@ -1,12 +1,11 @@
-# Specify a base image
-FROM node:12.13.0-alpine AS alpine
+FROM node:lts
 
 WORKDIR /app
-
-# Install dependencies
-COPY package.json .
-RUN npm install 
+COPY ./package*.json ./
+RUN npm ci
 COPY . .
+RUN chown -R node:node /app
+USER node
 
-# Default command
-CMD ["npm", "start"]
+EXPOSE 3001
+CMD npm start

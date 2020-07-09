@@ -1,17 +1,21 @@
 require('dotenv').config();
 
+// Express App Setup
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const register = require('./routes/registerRoute');
 
-// Config
-const config = require('./config');
-
+// Initialization
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+app.use('/register', register);
 
-
+// Express route handlers
+app.get('/test', (req, res) => {
+  res.send('Working!');
+});
 
 // Server
 const port = process.env.PORT || 3001;

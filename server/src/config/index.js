@@ -1,9 +1,7 @@
 const config = {
-  pgUser: process.env.PGUSER,
-  pgHost: process.env.PGHOST,
-  pgDatabase: process.env.PGDATABASE,
-  pgPassword: process.env.PGPASSWORD,
-  pgPort: process.env.PGPORT
+  pgUser: process.env.POSTGRES_USER,
+  pgDatabase: process.env.POSTGRES_DB,
+  pgPassword: process.env.POSTGRES_PASSWORD,
 };
 
 module.exports = config;

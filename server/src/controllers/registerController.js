@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('../db');
 
+// Checks to see if username is already taken
 const isUsernameTaken = async (query, username) => {
   try {
     const result = await db.query(query, username);
@@ -14,14 +15,30 @@ const isUsernameTaken = async (query, username) => {
   }
 };
 
+// Validates if password is at least 8 characters long, has at least 1 number and 1 special character
+const validatePassword = (password) => {
+  const passwordRegex = new RegExp(
+    '^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$'
+  );
+  return passwordRegex.test(String(password));
+};
+
 exports.registerUser = async (req, res) => {
   try {
     const { username, password } = req.body;
 
+    if (!validatePassword(password)) {
+      res.send({
+        message:
+          'Please enter a valid password with at least 8 characters, 1 special letter and 1 number',
+        status: false,
+      });
+      return;
+    }
+
     const checkQuery = `SELECT * FROM userprofile WHERE username = $1`;
 
-    // Checks to see if username is already taken
-    const doesExist = await isUsernameTaken(checkQuery, [email, username]);
+    const doesExist = await isUsernameTaken(checkQuery, [username]);
 
     if (doesExist) {
       res.send({
@@ -36,14 +53,13 @@ exports.registerUser = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const stringQuery = `INSERT INTO userprofile (username, password) values ($1,$2)`;
+    const stringQuery = `INSERT INTO userprofile (username, password) values ($1,$2) RETURNING ID`;
 
     const response = await db.query(stringQuery, [username, hashedPassword]);
 
     const payload = {
       user: {
         username,
-        email,
         id: response.rows[0].id,
       },
     };
