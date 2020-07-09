@@ -29,13 +29,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@types/jest": "^24.0.23",
-    "@types/node": "^12.12.14",
-    "@types/react": "^16.9.13",
-    "@types/react-dom": "^16.9.4",
-    "@types/styled-components": "^4.4.0",
-    "jest": "^24.9.0",
-    "typescript": "^3.7.2"
-  }
+  "devDependencies": {}
 }
