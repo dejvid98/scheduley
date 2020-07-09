@@ -38,7 +38,9 @@ exports.registerUser = async (req, res) => {
 
     const checkQuery = `SELECT * FROM userprofile WHERE username = $1`;
 
-    const doesExist = await isUsernameTaken(checkQuery, [username]);
+    const doesExist = await isUsernameTaken(checkQuery, [
+      username.toLowerCase(),
+    ]);
 
     if (doesExist) {
       res.send({

@@ -8,7 +8,7 @@ exports.loginUser = async (req, res) => {
 
     // Checks to see if username exists
     const loginQuery = 'SELECT * FROM userprofile WHERE username = $1';
-    const result = await db.query(loginQuery, [username]);
+    const result = await db.query(loginQuery, [username.toLowerCase()]);
 
     if (result.rowCount === 0) {
       res.send({
@@ -20,6 +20,7 @@ exports.loginUser = async (req, res) => {
 
     const user = { ...result.rows[0] };
 
+    // Comapres hashed values of passwords
     bcrypt.compare(password, user.password, (err, result) => {
       if (err) throw new Error(err);
 
