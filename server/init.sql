@@ -9,5 +9,5 @@ CREATE TABLE IF NOT EXISTS events (
 	id SERIAL UNIQUE PRIMARY KEY,
     event_date DATE NOT NULL,
 	description TEXT,
-	user_id INT REFERENCES userprofile(id)
+	user_id INT REFERENCES userprofile(id) NOT NULL
 );

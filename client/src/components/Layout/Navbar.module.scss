@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100vw;
+  background-color: #222831;
+  height: 5rem !important;
+
+  .wrapper__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2rem;
+
+    p {
+      font-size: 1.6rem;
+      color: #fff;
+      font-weight: 500;
+      letter-spacing: 2px;
+      position: relative;
+      top: 0.2rem;
+      cursor: pointer;
+    }
+  }
+  .wrapper__logoImage {
+    height: 3.2rem;
+    margin-right: 1rem;
+  }
+  p {
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    position: relative;
+    cursor: pointer;
+    color: #2bced6;
+    margin-left: auto;
+    margin-right: 3rem;
+  }
+}
