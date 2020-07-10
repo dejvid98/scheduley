@@ -13,11 +13,17 @@ const Navbar = ({ setislogging, islogging, isloggedin, logout }) => {
         <p>Scheduley</p>
       </div>
       {isloggedin ? (
-        <p onClick={() => logout()}>Logout</p>
+        <p onClick={() => logout()} className={styles.navItem}>
+          Logout
+        </p>
       ) : islogging ? (
-        <p onClick={() => setislogging()}>Register</p>
+        <p onClick={() => setislogging()} className={styles.navItem}>
+          Register
+        </p>
       ) : (
-        <p onClick={() => setislogging()}>Login</p>
+        <p onClick={() => setislogging()} className={styles.navItem}>
+          Login
+        </p>
       )}
     </div>
   );

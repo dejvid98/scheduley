@@ -3,23 +3,46 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  height: 20rem;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  height: 23rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
   width: 30rem;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.03);
-
+  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
   .date {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     width: 100%;
 
     p {
       font-size: 2rem;
       color: #777;
       letter-spacing: 2px;
+    }
+  }
+
+  .descriptionWrapper {
+    margin-top: 0rem;
+    .description {
+      width: 28rem;
+      background-color: #fff;
+    }
+  }
+
+  .buttonWrapper {
+    margin-top: 2rem;
+    .delete {
+      background-color: #ff4136;
+      width: 8rem;
+      border-radius: 2rem;
+      margin-right: 2rem;
+    }
+
+    .save {
+      background-color: #00adb5;
+      width: 8rem;
+      border-radius: 2rem;
     }
   }
 }
