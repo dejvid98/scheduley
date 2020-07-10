@@ -30,7 +30,7 @@ exports.registerUser = async (req, res) => {
     if (!validatePassword(password)) {
       res.send({
         message:
-          'Please enter a valid password with at least 8 characters, 1 special letter and 1 number',
+          'Please enter a valid password with at least 8 characters, 1 special character and 1 number.',
         status: false,
       });
       return;

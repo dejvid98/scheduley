@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Navbar.module.scss';
 
-const Navbar = () => {
+const Navbar = ({ setislogging, islogging }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapper__logo}>
@@ -12,7 +12,11 @@ const Navbar = () => {
         />
         <p>Scheduley</p>
       </div>
-      <p>Login</p>
+      {islogging ? (
+        <p onClick={() => setislogging()}>Register</p>
+      ) : (
+        <p onClick={() => setislogging()}>Login</p>
+      )}
     </div>
   );
 };

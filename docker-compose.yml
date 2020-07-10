@@ -1,8 +1,8 @@
 # docker-compose.yml
 version: '3'
 services:
-  app:
-    build: 
+  server:
+    build:
       context: ./server/
     depends_on:
       - postgres
@@ -14,8 +14,8 @@ services:
       - '3001:3001'
     command: npm run dev
     volumes:
-      - ./server/:/app/
-      - /app/node_modules
+      - ./server/:/server/
+      - /server/node_modules
   postgres:
     image: postgres:10.4
     ports:
@@ -34,6 +34,6 @@ services:
       - ./client/:/usr/app
       - /usr/app/node_modules
     depends_on:
-      - app
+      - server
     ports:
       - '3000:3000'

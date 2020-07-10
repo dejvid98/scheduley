@@ -4,8 +4,9 @@
   align-items: center;
   flex-direction: column;
   height: 80vh;
-  margin-top: 10rem;
+  margin-top: 7rem;
   z-index: 3;
+
   img {
     height: 13vh;
   }
@@ -17,15 +18,46 @@
     justify-content: center;
     align-items: center;
     background-color: #fff;
-    padding: 0rem 4rem 2rem 4rem;
+    padding: 0rem 7rem 3rem 7rem;
+    animation: moveInFromBottom 0.2s linear;
+
     border-radius: 25px;
+    box-shadow: 20px 20px 65px #d5d5d5, -20px -20px 65px #ffffff;
     .input {
       margin: 1rem;
       background-color: #fff;
+      width: 18rem;
+    }
+
+    .error {
+      margin-bottom: 1rem;
+      animation: moveInFromRight 0.4s ease;
+    }
+
+    @keyframes moveInFromRight {
+      0% {
+        opacity: 0;
+        transform: translateX(5rem);
+      }
+
+      100% {
+        transform: translateX(0px);
+      }
+    }
+
+    @keyframes moveInFromBottom {
+      0% {
+        opacity: 0;
+        transform: translateY(5rem);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
     }
 
     p {
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: #2bced6;
       letter-spacing: 1.5px;
       font-weight: 500;
@@ -35,9 +67,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 1rem;
+      margin-top: 1rem;
       p {
-        font-size: 1rem;
+        font-size: 0.9rem;
         color: #393e46;
       }
       a {
@@ -52,8 +84,10 @@
 
     .submitButton {
       background-color: #00adb5;
-      width: 7rem;
+      width: 10rem;
+      font-size: 1.1rem;
       border-radius: 25px;
+      margin-top: 1rem;
     }
   }
 }

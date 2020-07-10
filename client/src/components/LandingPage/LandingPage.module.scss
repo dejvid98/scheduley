@@ -6,12 +6,13 @@
   .illustrationWrapper {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
-    background-color: #34a0ef;
-    clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
-    width: 60vw;
+    padding-left: 9vw;
+    background-color: #00adb5;
+    clip-path: polygon(0 0, 100% 0%, 70% 100%, 0% 100%);
+    width: 50vw;
     z-index: 1;
     .calendar {
       height: 55vh;
@@ -28,7 +29,9 @@
   }
 
   .registrationWrapper {
-    width: 40vw;
+    position: relative;
+    right: 5vw;
+    width: 50vw;
   }
 }
 

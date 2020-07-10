@@ -1,5 +1,19 @@
 const db = require('../db');
 
+exports.getAllUserEvents = async (req, res) => {
+  try {
+    const { user_id } = req.query;
+
+    const eventQuery = `SELECT * FROM events WHERE user_id = $1`;
+
+    const response = await db.query(eventQuery, [user_id]);
+
+    res.send({ status: true, data: response.rows });
+  } catch (err) {
+    res.send({ message: err.message });
+  }
+};
+
 exports.createEvent = async (req, res) => {
   try {
     const { user_id, date, description } = req.body;
