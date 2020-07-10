@@ -8,7 +8,7 @@
   z-index: 3;
 
   img {
-    height: 13vh;
+    min-height: 13vh;
   }
 
   .formContainer {
@@ -79,6 +79,15 @@
           color: #34a0ef;
           text-decoration: none;
         }
+      }
+    }
+
+    .registerLoginText {
+      font-size: 1rem;
+      color: #777;
+      span {
+        color: #34a0ef;
+        cursor: pointer;
       }
     }
 

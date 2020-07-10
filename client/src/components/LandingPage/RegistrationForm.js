@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './RegistrationForm.module.scss';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 import httpReq from '../../Util/HTTP';
+import Cookies from 'js-cookie';
+import { useHistory } from 'react-router-dom';
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ setislogging, setCookie }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [token, setToken] = useState({});
   const [confirmPassword, setConfirmPassword] = useState('');
   const [tos, setTos] = useState(false);
   const [error, setError] = useState('');
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+
+  const history = useHistory();
 
   const formValidation = async () => {
     if (!username) {
@@ -46,7 +51,7 @@ const RegistrationForm = () => {
   };
 
   const handleRegistration = async () => {
-    if (!formValidation()) {
+    if (formValidation()) {
       try {
         const response = await httpReq.post('/register', {
           username,
@@ -58,11 +63,21 @@ const RegistrationForm = () => {
           setPasswordError(true);
           return;
         }
+        Cookies.set('JWT', response.data.token);
+        setToken(response.data.token);
       } catch (err) {
         setError(err.message);
       }
     }
   };
+
+  useEffect(() => {
+    const getToken = async () => {
+      const cookie = await Cookies.get('JWT');
+      if (cookie) history.push('/dashboard');
+    };
+    getToken();
+  }, [token]);
 
   return (
     <div className={styles.container}>
@@ -127,6 +142,11 @@ const RegistrationForm = () => {
             <a href='#'> terms and conditions</a>
           </p>
         </div>
+
+        <p className={styles.registerLoginText}>
+          Already have an account?
+          <span onClick={() => setislogging()}> Sign in</span>
+        </p>
 
         <Button
           variant='contained'
