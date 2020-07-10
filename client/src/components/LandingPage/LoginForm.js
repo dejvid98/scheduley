@@ -36,7 +36,7 @@ const LoginForm = ({ setislogging }) => {
   };
 
   const handleLogin = async () => {
-    if (!formValidation()) {
+    if (formValidation()) {
       try {
         const response = await httpReq.post('/login', {
           username,
@@ -63,7 +63,7 @@ const LoginForm = ({ setislogging }) => {
       if (cookie) history.push('/dashboard');
     };
     getToken();
-  }, [token]);
+  }, []);
 
   return (
     <div className={styles.container}>

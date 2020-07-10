@@ -1,0 +1,23 @@
+.container {
+  // background-color: #eeeeee;
+}
+.innerContainer {
+  width: 100%;
+  margin-left: auto;
+  display: flex;
+
+  .interface {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10vh;
+    margin-left: 20vh;
+
+    h3 {
+      color: #393e46;
+      font-weight: 500;
+      font-size: 2rem;
+    }
+  }
+}

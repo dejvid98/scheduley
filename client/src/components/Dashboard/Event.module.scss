@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 20rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 30rem;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.03);
+
+  .date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    width: 100%;
+
+    p {
+      font-size: 2rem;
+      color: #777;
+      letter-spacing: 2px;
+    }
+  }
+}

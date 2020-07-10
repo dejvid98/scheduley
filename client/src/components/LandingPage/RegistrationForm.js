@@ -77,7 +77,7 @@ const RegistrationForm = ({ setislogging, setCookie }) => {
       if (cookie) history.push('/dashboard');
     };
     getToken();
-  }, [token]);
+  }, []);
 
   return (
     <div className={styles.container}>
