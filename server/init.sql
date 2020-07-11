@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS events (
 CREATE TABLE IF NOT EXISTS activity (
 	id SERIAL UNIQUE PRIMARY KEY,
 	date DATE NOT NULL,
+	description TEXT NOT NULL,
 	user_id INT REFERENCES userprofile(id) NOT NULL,
 	created_at TIMESTAMP DEFAULT now()
 );

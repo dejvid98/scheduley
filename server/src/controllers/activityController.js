@@ -4,7 +4,7 @@ exports.getUserActivity = async (req, res) => {
   try {
     const { user_id } = req.query;
 
-    const eventQuery = `SELECT * FROM activity WHERE user_id = $1`;
+    const eventQuery = `SELECT * FROM activity WHERE user_id = $1 ORDER BY created_at DESC`;
 
     const response = await db.query(eventQuery, [user_id]);
 

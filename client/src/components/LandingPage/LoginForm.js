@@ -14,7 +14,8 @@ const LoginForm = ({ setislogging }) => {
   const [token, setToken] = useState();
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-
+  
+  //eslint-disable-next-line
   const history = useHistory();
 
   const formValidation = async () => {

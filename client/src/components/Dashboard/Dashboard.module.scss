@@ -1,6 +1,3 @@
-.container {
-  // background-color: #eeeeee;
-}
 .innerContainer {
   width: 100%;
   margin-left: auto;
@@ -18,6 +15,12 @@
       color: #393e46;
       font-weight: 500;
       font-size: 2rem;
+    }
+
+    p {
+      color: #777;
+      letter-spacing: 1px;
+      font-size: 1.4rem;
     }
   }
 }
