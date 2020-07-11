@@ -7,8 +7,15 @@ CREATE TABLE IF NOT EXISTS userprofile (
 
 CREATE TABLE IF NOT EXISTS events (
 	id SERIAL UNIQUE PRIMARY KEY,
-    event_date DATE NOT NULL,
+    date DATE NOT NULL,
 	description TEXT,
+	user_id INT REFERENCES userprofile(id) NOT NULL,
+	created_at TIMESTAMP DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS activity (
+	id SERIAL UNIQUE PRIMARY KEY,
+	date DATE NOT NULL,
 	user_id INT REFERENCES userprofile(id) NOT NULL,
 	created_at TIMESTAMP DEFAULT now()
 );

@@ -11,7 +11,7 @@ const LoginForm = ({ setislogging }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [token, setToken] = useState({});
+  const [token, setToken] = useState();
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
@@ -39,7 +39,7 @@ const LoginForm = ({ setislogging }) => {
     if (formValidation()) {
       try {
         const response = await httpReq.post('/login', {
-          username,
+          username: username.toLocaleLowerCase(),
           password,
         });
 
@@ -61,9 +61,10 @@ const LoginForm = ({ setislogging }) => {
     const getToken = async () => {
       const cookie = await Cookies.get('JWT');
       if (cookie) history.push('/dashboard');
+      console.log('hi');
     };
     getToken();
-  }, []);
+  }, [token]);
 
   return (
     <div className={styles.container}>

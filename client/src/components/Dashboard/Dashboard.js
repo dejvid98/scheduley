@@ -10,8 +10,11 @@ import Event from './Event';
 const Dashboard = () => {
   const [token, setToken] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [event, setEvent] = useState();
 
   const history = useHistory();
+
+  const handleEvent = (date) => setEvent(date);
 
   const logOut = async () => {
     setIsLoggedIn(false);
@@ -28,10 +31,10 @@ const Dashboard = () => {
       const cookie = await Cookies.get('JWT');
       if (!cookie) history.push('/');
       else {
-        setIsLoggedIn(true);
         jwt.verify(cookie, 'secretToken', async (err, decoded) => {
           setToken(decoded);
         });
+        setIsLoggedIn(true);
       }
     };
     getToken();
@@ -43,10 +46,9 @@ const Dashboard = () => {
         <Calendar />
         <div className={styles.interface}>
           <h3>
-            Welcome back,{' '}
-            {token ? capitalizeFirstLetter(token.user.username) : null}
+            Welcome back, {token ? capitalizeFirstLetter(token.username) : null}
           </h3>
-          <Event />
+          <Event event={event} handleEvent={handleEvent} />
         </div>
       </div>
     </div>

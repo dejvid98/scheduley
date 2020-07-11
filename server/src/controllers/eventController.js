@@ -51,7 +51,7 @@ exports.updateEvent = async (req, res) => {
 
     await db.query(eventQuery, [description, id]);
 
-    res.send({ message: 'Event successfully deleted!', status: true });
+    res.send({ message: 'Event successfully updated!', status: true });
   } catch (err) {
     res.send({ message: err.message });
   }
