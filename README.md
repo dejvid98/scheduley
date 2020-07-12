@@ -18,7 +18,7 @@
     
     $ docker-compose up
 ```
-- After the containers are built and running, navigate to [localhost:3000]http://localhost:3000
+- After the containers are built and running, navigate to [localhost:3000 ](http://localhost:3000)
 
 ## Previews
 
