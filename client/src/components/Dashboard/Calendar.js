@@ -10,15 +10,15 @@ export default function DatePickerCalendarWithInputExample({
   handleDate,
   events,
 }) {
-  const dejt = new Date('07-10-2020');
-  const slectedDates = [dejt];
+
   const modifiers = {
     selected: (date) =>
-      slectedDates.some((selectedDate) => isSameDay(selectedDate, date)),
+      events.some((selectedDate) => isSameDay(selectedDate, date)),
   };
 
   const handleDayClick = (date) => {
     handleDate(date);
+    console.log(date);
   };
 
   return (

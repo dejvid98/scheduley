@@ -9,7 +9,6 @@ const cors = require('cors');
 const register = require('./routes/registerRoute');
 const login = require('./routes/loginRoute');
 const event = require('./routes/eventRoute');
-const activity = require('./routes/activityRoute');
 
 // Initialization
 const app = express();
@@ -20,7 +19,6 @@ app.use(bodyParser.json());
 app.use('/register', register);
 app.use('/login', login);
 app.use('/event', event);
-app.use('/activity', activity);
 
 // Server
 const port = process.env.PORT || 3001;

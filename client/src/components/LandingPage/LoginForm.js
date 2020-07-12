@@ -14,7 +14,7 @@ const LoginForm = ({ setislogging }) => {
   const [token, setToken] = useState();
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  
+
   //eslint-disable-next-line
   const history = useHistory();
 
@@ -62,9 +62,9 @@ const LoginForm = ({ setislogging }) => {
     const getToken = async () => {
       const cookie = await Cookies.get('JWT');
       if (cookie) history.push('/dashboard');
-      console.log('hi');
     };
     getToken();
+    console.log('hi');
   }, [token]);
 
   return (

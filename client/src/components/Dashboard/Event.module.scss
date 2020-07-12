@@ -8,7 +8,8 @@
   width: 30rem;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.03);
-  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+  box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.08);
+  animation: moveInFromBottom 0.4s ease;
   .date {
     display: flex;
     justify-content: center;
@@ -22,8 +23,19 @@
     }
   }
 
+  @keyframes moveInFromBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(20rem);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0rem);
+    }
+  }
+
   .descriptionWrapper {
-    margin-top: 0rem;
     .description {
       width: 28rem;
       background-color: #fff;

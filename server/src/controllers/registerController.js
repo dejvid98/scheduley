@@ -60,10 +60,8 @@ exports.registerUser = async (req, res) => {
     const response = await db.query(stringQuery, [username, hashedPassword]);
 
     const payload = {
-      user: {
-        username,
-        id: response.rows[0].id,
-      },
+      username,
+      id: response.rows[0].id,
     };
 
     jwt.sign(payload, 'secretToken', (err, token) => {

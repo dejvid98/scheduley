@@ -3,7 +3,18 @@ import styles from './Event.module.scss';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-const Event = ({ date, description, setDescription, saveEvent }) => {
+const Event = ({
+  date,
+  description,
+  setDescription,
+  saveEvent,
+  deleteEvent,
+}) => {
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      saveEvent();
+    }
+  };
   return (
     <div className={styles.container}>
       <div className={styles.date}>
@@ -15,7 +26,7 @@ const Event = ({ date, description, setDescription, saveEvent }) => {
           label={
             description
               ? 'Description'
-              : 'Seems like you have no events on selected date'
+              : 'Looks like you do not have an event on this date'
           }
           multiline
           rows={6}
@@ -23,11 +34,17 @@ const Event = ({ date, description, setDescription, saveEvent }) => {
           className={styles.description}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          onKeyDown={handleEnter}
         />
       </div>
 
       <div className={styles.buttonWrapper}>
-        <Button variant='contained' color='primary' className={styles.delete}>
+        <Button
+          variant='contained'
+          color='primary'
+          className={styles.delete}
+          onClick={deleteEvent}
+        >
           Delete
         </Button>
         <Button

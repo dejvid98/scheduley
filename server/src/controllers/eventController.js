@@ -35,11 +35,7 @@ exports.createEvent = async (req, res) => {
     const eventQuery = `INSERT INTO events(user_id,date,description)
                         VALUES($1,$2,$3)`;
 
-    const activityQuery = `INSERT INTO activity(user_id,date,description) VALUES($1,$2,$3)`;
-
     await db.query(eventQuery, [user_id, date, description]);
-
-    await db.query(activityQuery, [user_id, date, 'Created an event on ']);
 
     res.send({ message: 'Event successfully created!', status: true });
   } catch (err) {
@@ -49,15 +45,11 @@ exports.createEvent = async (req, res) => {
 
 exports.deleteEvent = async (req, res) => {
   try {
-    const { id, date, user_id } = req.body;
+    const { id } = req.query;
 
     const eventQuery = `DELETE FROM events WHERE id = $1`;
 
-    const activityQuery = `INSERT INTO activity(user_id,date,description) VALUES($1,$2,$3)`;
-
     await db.query(eventQuery, [id]);
-
-    await db.query(activityQuery, [user_id, date, 'Deleted an event on ']);
 
     res.send({ message: 'Event successfully deleted!', status: true });
   } catch (err) {
@@ -67,15 +59,11 @@ exports.deleteEvent = async (req, res) => {
 
 exports.updateEvent = async (req, res) => {
   try {
-    const { id, description, date, user_id } = req.body;
+    const { id, description } = req.body;
 
     const eventQuery = `UPDATE events SET description = $1 WHERE id = $2`;
 
-    const activityQuery = `INSERT INTO activity(user_id,date,description) VALUES($1,$2,$3)`;
-
     await db.query(eventQuery, [description, id]);
-
-    await db.query(activityQuery, [user_id, date, 'Updated an event on ']);
 
     res.send({ message: 'Event successfully updated!', status: true });
   } catch (err) {

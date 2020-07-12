@@ -14,7 +14,7 @@ router.route('/date').post(getEventByDate);
 
 router.route('/').post(createEvent);
 
-router.route('/').delete(deleteEvent);
+router.route('/delete').post(deleteEvent);
 
 router.route('/').put(updateEvent);
 

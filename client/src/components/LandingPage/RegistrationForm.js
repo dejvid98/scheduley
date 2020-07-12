@@ -8,7 +8,7 @@ import httpReq from '../../Util/HTTP';
 import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom';
 
-const RegistrationForm = ({ setislogging, setCookie }) => {
+const RegistrationForm = ({ setislogging }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState({});
@@ -77,7 +77,7 @@ const RegistrationForm = ({ setislogging, setCookie }) => {
       if (cookie) history.push('/dashboard');
     };
     getToken();
-  }, []);
+  }, [token]);
 
   return (
     <div className={styles.container}>

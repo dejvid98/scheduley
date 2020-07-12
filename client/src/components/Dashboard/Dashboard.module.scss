@@ -6,13 +6,13 @@
   .interface {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
     flex-direction: column;
-    margin-top: 10vh;
-    margin-left: 20vh;
+    margin-top: 7vh;
+    margin-left: 5vh;
+    width: 100%;
 
     h3 {
-      color: #393e46;
+      color: #777;
       font-weight: 500;
       font-size: 2rem;
     }
@@ -22,5 +22,26 @@
       letter-spacing: 1px;
       font-size: 1.4rem;
     }
+
+    .alert {
+      position: relative;
+      margin-top: auto;
+      margin-left: auto;
+      bottom: 2rem;
+      right: 2rem;
+      animation: moveInFromRight 0.5s ease;
+    }
+  }
+}
+
+@keyframes moveInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0rem);
   }
 }
