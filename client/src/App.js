@@ -1,5 +1,8 @@
+// Libraries imports
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+
+// Relative imports
 import LandingPage from './components/LandingPage/LandingPage';
 import Dashboard from './components/Dashboard/Dashboard';
 

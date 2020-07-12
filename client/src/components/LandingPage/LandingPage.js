@@ -1,10 +1,13 @@
+// Libraries imports
 import React, { useState } from 'react';
+
+//Relative imports
 import Navbar from '../Layout/Navbar';
 import styles from './LandingPage.module.scss';
 import RegistrationForm from './RegistrationForm';
 import LoginForm from './LoginForm';
 
-const LandingPage = ({ props }) => {
+const LandingPage = () => {
   const [isLogging, setIsLogging] = useState(false);
 
   const setIsLoggingIn = () => {

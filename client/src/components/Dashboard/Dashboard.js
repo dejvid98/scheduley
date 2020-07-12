@@ -1,14 +1,17 @@
+// Libraries imports
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken';
+import moment from 'moment';
+import Alert from '@material-ui/lab/Alert';
+
+// Relative imports
 import Navbar from '../Layout/Navbar';
 import styles from './Dashboard.module.scss';
-import Cookies from 'js-cookie';
-import { useHistory } from 'react-router-dom';
-import jwt from 'jsonwebtoken';
 import Calendar from './Calendar';
 import Event from './Event';
-import moment from 'moment';
 import httpRequest from '../../Util/HTTP';
-import Alert from '@material-ui/lab/Alert';
 
 const Dashboard = () => {
   const [token, setToken] = useState();
@@ -19,9 +22,9 @@ const Dashboard = () => {
   const [description, setDescription] = useState('');
   const [isEventSet, setIsEventSet] = useState(false);
   const [alertText, setAlertText] = useState('');
-
   const history = useHistory();
 
+  // Checks to see if user has an event on the selected date
   const handleDate = async (date) => {
     const formatedDate = moment(date).format('MM.DD.YYYY');
     setDate(formatedDate);
@@ -41,13 +44,16 @@ const Dashboard = () => {
     }
   };
 
+  // Returns all user events
   const getUserEvents = async () => {
     const response = await httpRequest.get(`/event?user_id=${token.id}`);
     if (response.data.data) formatEvents(response.data.data);
   };
 
+  // Creates or updates an event based on if user has already set it
   const saveEvent = async () => {
-    if (isEventSet) {
+    // If user has already created an event it updates it instead
+    if (isEventSet && description) {
       await httpRequest.put('/event', {
         user_id: token.id,
         description,
@@ -61,6 +67,7 @@ const Dashboard = () => {
         setAlertText('');
       }, 4000);
     } else {
+      // Creates a new event
       await httpRequest.post('/event', {
         user_id: token.id,
         description,
@@ -83,20 +90,18 @@ const Dashboard = () => {
       date,
     });
 
-    const event_id = response.data.data.id;
+    if (response.data.data) {
+      const event_id = response.data.data.id;
+      await httpRequest.post(`/event/delete?id=${event_id}`);
 
-    await httpRequest.post(`/event/delete?id=${event_id}`);
-
-    setDescription('');
-    setDate();
-
-    getUserEvents();
-
-    setAlertText('Event successfully deleted!');
-
-    setTimeout(() => {
-      setAlertText('');
-    }, 4000);
+      setDescription('');
+      setDate();
+      getUserEvents();
+      setAlertText('Event successfully deleted!');
+      setTimeout(() => {
+        setAlertText('');
+      }, 4000);
+    }
   };
 
   const logOut = async () => {
@@ -105,6 +110,7 @@ const Dashboard = () => {
     history.push('/');
   };
 
+  // Formats the events to compatible format for the calendar
   const formatEvents = (events) => {
     setEvents(
       events.map((event) => new Date(moment(event.date).format('llll')))
@@ -115,6 +121,7 @@ const Dashboard = () => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
+  // Checks to see if user is already logged in with token in cookies, if not it redirects the user.
   useEffect(() => {
     const getToken = async () => {
       const cookie = await Cookies.get('JWT');
@@ -127,10 +134,12 @@ const Dashboard = () => {
         setIsLoggedIn(true);
       }
     };
+    console.log('hi');
 
     getToken();
-  }, []);
+  }, [history]);
 
+  // Retrives all user events once the user is logged in
   useEffect(() => {
     if (token) getUserEvents();
   }, [token]);

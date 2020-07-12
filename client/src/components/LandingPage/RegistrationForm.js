@@ -1,12 +1,15 @@
+// Libraries imports
 import React, { useState, useEffect } from 'react';
-import styles from './RegistrationForm.module.scss';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
-import httpReq from '../../Util/HTTP';
 import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom';
+
+// Relative imports
+import styles from './RegistrationForm.module.scss';
+import httpReq from '../../Util/HTTP';
 
 const RegistrationForm = ({ setislogging }) => {
   const [username, setUsername] = useState('');
@@ -20,15 +23,21 @@ const RegistrationForm = ({ setislogging }) => {
 
   const history = useHistory();
 
-  const formValidation = async () => {
-    if (!username) {
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      handleRegistration();
+    }
+  };
+
+  const formValidation = () => {
+    if (username.length < 3) {
       setError('Please enter a valid username');
       setTimeout(() => setError(''), 5000);
       setUsernameError(true);
       return false;
     }
 
-    if (!password || !confirmPassword || password.length < 8) {
+    if (confirmPassword.length < 8 || password.length < 8) {
       setError('Please enter a valid password');
       setTimeout(() => setError(''), 5000);
       setPasswordError(true);
@@ -47,6 +56,7 @@ const RegistrationForm = ({ setislogging }) => {
       setTimeout(() => setError(''), 5000);
       return false;
     }
+
     return true;
   };
 
@@ -77,7 +87,8 @@ const RegistrationForm = ({ setislogging }) => {
       if (cookie) history.push('/dashboard');
     };
     getToken();
-  }, [token]);
+    console.log('hi');
+  }, [token, history]);
 
   return (
     <div className={styles.container}>
@@ -91,12 +102,12 @@ const RegistrationForm = ({ setislogging }) => {
         ) : null}
 
         <TextField
-          id='outlined-basic'
           label='Username'
           variant='outlined'
           error={usernameError}
           className={styles.input}
           value={username}
+          onKeyDown={handleEnter}
           onChange={(e) => {
             setError('');
             setUsernameError(false);
@@ -104,13 +115,13 @@ const RegistrationForm = ({ setislogging }) => {
           }}
         />
         <TextField
-          id='outlined-basic'
           label='Password'
           variant='outlined'
           error={passwordError}
           type='password'
           className={styles.input}
           value={password}
+          onKeyDown={handleEnter}
           onChange={(e) => {
             setError('');
             setPasswordError(false);
@@ -118,13 +129,13 @@ const RegistrationForm = ({ setislogging }) => {
           }}
         />
         <TextField
-          id='outlined-basic'
           label='Confirm Password'
           variant='outlined'
           type='password'
           className={styles.input}
           error={passwordError}
           value={confirmPassword}
+          onKeyDown={handleEnter}
           onChange={(e) => {
             setError('');
             setPasswordError(false);

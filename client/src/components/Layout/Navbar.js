@@ -1,4 +1,7 @@
+// Libraries imports
 import React from 'react';
+
+// Relative imports
 import styles from './Navbar.module.scss';
 
 const Navbar = ({ setislogging, islogging, isloggedin, logout }) => {

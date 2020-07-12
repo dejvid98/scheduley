@@ -1,11 +1,14 @@
+// Libraries imports
 import React, { useState, useEffect } from 'react';
-import styles from './RegistrationForm.module.scss';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
-import httpReq from '../../Util/HTTP';
 import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom';
+
+// Relative imports
+import styles from './RegistrationForm.module.scss';
+import httpReq from '../../Util/HTTP';
 
 const LoginForm = ({ setislogging }) => {
   const [username, setUsername] = useState('');
@@ -15,22 +18,29 @@ const LoginForm = ({ setislogging }) => {
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
-  //eslint-disable-next-line
   const history = useHistory();
 
-  const formValidation = async () => {
-    if (!username) {
+  // Alows user to submit form with enter key
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      handleLogin();
+    }
+  };
+
+  // Performs input validation
+  const formValidation = () => {
+    if (username.length < 3) {
       setError('Please enter a valid username');
       setTimeout(() => setError(''), 5000);
       setUsernameError(true);
-      return false;
+      return;
     }
 
-    if (!password || password.length < 8) {
+    if (password.length < 8) {
       setError('Please enter a valid password');
       setTimeout(() => setError(''), 5000);
       setPasswordError(true);
-      return false;
+      return;
     }
 
     return true;
@@ -65,7 +75,7 @@ const LoginForm = ({ setislogging }) => {
     };
     getToken();
     console.log('hi');
-  }, [token]);
+  }, [token, history]);
 
   return (
     <div className={styles.container}>
@@ -84,6 +94,7 @@ const LoginForm = ({ setislogging }) => {
           variant='outlined'
           error={usernameError}
           className={styles.input}
+          onKeyDown={handleEnter}
           value={username}
           onChange={(e) => {
             setError('');
@@ -98,6 +109,7 @@ const LoginForm = ({ setislogging }) => {
           error={passwordError}
           type='password'
           className={styles.input}
+          onKeyDown={handleEnter}
           value={password}
           onChange={(e) => {
             setError('');

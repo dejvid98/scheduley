@@ -1,7 +1,10 @@
+// Libraries imports
 import React from 'react';
-import styles from './Event.module.scss';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+
+// Relative imports
+import styles from './Event.module.scss';
 
 const Event = ({
   date,
