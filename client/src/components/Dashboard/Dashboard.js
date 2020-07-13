@@ -134,7 +134,6 @@ const Dashboard = () => {
         setIsLoggedIn(true);
       }
     };
-    console.log('hi');
 
     getToken();
   }, [history]);

@@ -87,7 +87,6 @@ const RegistrationForm = ({ setislogging }) => {
       if (cookie) history.push('/dashboard');
     };
     getToken();
-    console.log('hi');
   }, [token, history]);
 
   return (
